@@ -1,0 +1,18 @@
+$bbb: red;
+
+.a {
+  margin-top: 10px;
+  color: $bbb;
+
+  &-red {
+    color: $bbb;
+  }
+
+  &__ddddddredss {
+    color: $bbb;
+  }
+
+  &-ddd {
+    background-color: $bbb;
+  }
+}

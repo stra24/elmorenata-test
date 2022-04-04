@@ -1,0 +1,37 @@
+{
+  "stylelint.validate": ["scss"], // VSCodeのStylelint拡張機能をインストールしたとしても、最新バージョンでは、ここで、フォーマットしたいもの（["css", "scss"]のように）を指定しないといけない。
+  "scss.validate": false, // VSCodeの組み込みリンターとStylelintが同じエラーを表示してしまうことがあるそうで、それはちょっと鬱陶しいので組み込みリンターのほうを無効にする。
+  "css.validate": false, // VSCodeの組み込みリンターとStylelintが同じエラーを表示してしまうことがあるそうで、それはちょっと鬱陶しいので組み込みリンターのほうを無効にする。
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true // VSCode上で保存時にSCSSを自動整形してくれるようにする。
+  },
+  "editor.formatOnSave": true, // 保存時にフォーマッタ（editor.defaultFormatter＝Prettier）が効くようにする。
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // VSCodeで使用するフォーマッタにPrettierを使用する。
+
+  // CSSはフォーマットしない。
+  "[css]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
+    "editor.formatOnSave": false
+  },
+
+  // JavaScriptはESLintでリントする。
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true
+  },
+
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded", // 出力されるCSSファイルのフォーマット
+      "extensionName": ".css", // 出力されるCSSファイルの拡張子
+      "savePath": "/css" // cssフォルダ直下にCSSファイルを出力するようにする。
+    }
+  ],
+  "liveSassCompile.settings.generateMap": false, // MAPファイルは生成しないようにする。
+  "liveSassCompile.settings.autoprefix": ["> 1% in JP", "last 5 versions"] // ベンダープレフィックスを付与する。「日本国内のシェアが1%以上」または「最新バージョンから数えて5つまで」
+}
