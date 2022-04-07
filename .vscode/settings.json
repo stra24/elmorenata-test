@@ -29,7 +29,7 @@
     {
       "format": "expanded", // 出力されるCSSファイルのフォーマット
       "extensionName": ".css", // 出力されるCSSファイルの拡張子
-      "savePath": "/css" // cssフォルダ直下にCSSファイルを出力するようにする。
+      "savePath": "/src/css" // cssフォルダ直下にCSSファイルを出力するようにする。
     }
   ],
   "liveSassCompile.settings.generateMap": false, // MAPファイルは生成しないようにする。
