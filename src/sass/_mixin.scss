@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+/***************************************
+  メディアクエリ用
+****************************************/
+@mixin media($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/***************************************
+  フレックスボックス
+****************************************/
+// 要素横並び、縦方向が中央揃え、横方向が中央揃え
+@mixin flexAndCenterAndCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 要素横並び、縦方向が中央揃え、横方向が前揃え
+@mixin flexAndCenterAndFlexStart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// 要素横並び、縦方向が中央揃え、横方向が端揃え
+@mixin flexAndCenterAndSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 要素横並び、縦方向が中央揃え、横方向が均等揃え
+@mixin flexAndCenterAndSpaceAround {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+// 要素縦並び、縦方向が中央揃え、横方向が中央揃え
+@mixin flexColumnAndCenterAndCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+// 要素縦並び、縦方向が端揃え、横方向が中央揃え
+@mixin flexColumnAndCenterAndSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}

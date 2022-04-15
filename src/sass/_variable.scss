@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/***************************************
+  幅・高さの設定
+****************************************/
+// ヘッダーの高さ
+$headerHeight: 6rem;
+
+// Mediumサイズのレイアウト最大幅
+$mdLayoutMaxWidth: 1023px;
+
+// Smallサイズのレイアウト最大幅
+$smLayoutMaxWidth: 599px;
+
+/***************************************
+  ブレークポイント
+****************************************/
+$breakpoints: (
+  "sm": "screen and (max-width: #{$smLayoutMaxWidth})",
+  "md": "screen and (max-width: #{$mdLayoutMaxWidth})",
+);
+
+/***************************************
+  色の設定
+****************************************/
+// ヒーローイメージの文字色
+$heroImageOverMdFontColor: #727272;
+$heroImageSmFontColor: #e6e4e4;

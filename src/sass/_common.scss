@@ -1,0 +1,241 @@
+@charset "UTF-8";
+
+/***************************************
+  全体
+****************************************/
+html {
+  font-family: YuMincho, /* Mac用 */ "Yu Mincho", /* Windows用 */ serif;
+  font-size: 62.5%;
+}
+
+body {
+  background-image: url(../img/paper_00087_pr4.jpg);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/***************************************
+  ヘッダー
+****************************************/
+.bl_header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: $headerHeight;
+  background-color: rgba(255, 255, 255, 0.7);
+
+  &_container {
+    @include flexAndCenterAndSpaceBetween();
+
+    padding-left: 1rem;
+  }
+
+  &_title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+
+    &_sub {
+      font-size: 1.3rem;
+    }
+
+    &_main {
+      font-size: 3.5rem;
+    }
+  }
+
+  &_nav {
+    @include flexAndCenterAndSpaceBetween();
+
+    &_menu {
+      @include flexAndCenterAndSpaceBetween();
+
+      &_element {
+        @include flexColumnAndCenterAndCenter();
+
+        height: $headerHeight;
+        padding: 0 clamp(1rem, 1vw, 2rem);
+
+        &_mainText {
+          font-size: clamp(2rem, 1.95vw, 3rem);
+        }
+
+        &_subText {
+          font-size: clamp(1.2rem, 1.17vw, 1.4rem);
+        }
+
+        &:hover {
+          color: white;
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+      }
+    }
+
+    &_reservation {
+      height: 35px;
+      padding: 20px;
+      margin: 0 2rem;
+      font-size: clamp(1.4rem, 1.95vw, 2.2rem);
+      color: white;
+      background-color: #cc962a;
+      border-radius: 10px;
+      box-shadow: 1px 1px 8px rgba(169, 169, 169, 0.7);
+      @include flexColumnAndCenterAndCenter();
+
+      &:hover {
+        color: black;
+        cursor: pointer;
+        background-color: white;
+        border-color: black;
+      }
+    }
+  }
+}
+
+/***************************************
+  フッター
+****************************************/
+.bl_footer {
+  margin-top: 10rem;
+  background-color: #817d68;
+
+  @include media(md) {
+    margin-top: 5rem;
+  }
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: 80rem;
+    padding: 5.5rem 0;
+    margin: 0 auto;
+    color: white;
+  }
+
+  &_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &_sub {
+      font-size: 2.5rem;
+
+      @include media(md) {
+        font-size: 1.8rem;
+      }
+    }
+
+    &_main {
+      font-size: 6rem;
+
+      @include media(md) {
+        font-size: 4.5rem;
+      }
+    }
+  }
+
+  &_nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    font-size: 2.5rem;
+
+    @include media(md) {
+      font-size: 1.8rem;
+    }
+
+    @include media(sm) {
+      display: none;
+    }
+
+    &_element {
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
+      border-left: 1px solid white;
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+
+  &_contents {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 7rem;
+
+    @include media(md) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &_element {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 5rem;
+
+      @include media(md) {
+        align-items: center;
+        padding-top: 5.5rem;
+        padding-left: 0;
+
+        &:first-child {
+          padding-top: 0;
+        }
+      }
+
+      &_title {
+        margin-bottom: 3rem;
+        font-size: 3rem;
+
+        @include media(md) {
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      &_description {
+        font-size: 1.6rem;
+        line-height: 1.6;
+
+        @include media(sm) {
+          text-align: center;
+        }
+      }
+
+      .el_btn {
+        width: 25rem;
+        height: 5rem;
+        margin-top: 2rem;
+        border-color: #fff;
+
+        &_container {
+          top: -0.4rem;
+          left: -0.4rem;
+          width: 25rem;
+          height: 5rem;
+          font-size: 2rem;
+          color: #fff;
+          border-color: #fff;
+        }
+      }
+    }
+  }
+
+  &_copyright {
+    margin-top: 6rem;
+    font-size: 1.3rem;
+  }
+}

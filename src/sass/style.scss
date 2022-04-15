@@ -1,18 +1,1560 @@
-$bbb: red;
+@charset "UTF-8";
+@import "variable", "mixin", "module", "common";
 
-.a {
-  margin-top: 10px;
-  color: $bbb;
+/***************************************
+    ヒーローイメージ
+****************************************/
+.top-hero-image {
+  display: flex; // 左に白背景、右に画像を配置するため。
 
-  &-red {
-    color: $bbb;
+  // 左側の白背景部分
+  &__left {
+    position: relative; // 左下にナビを配置するため。
+    width: 35rem;
+    height: 100vh;
+    background-color: white;
+
+    @include media(md) {
+      width: 30vw;
+    }
+
+    @include media(sm) {
+      width: 0; // smの場合は左の白背景は表示しない。
+    }
   }
 
-  &__ddddddredss {
-    color: $bbb;
+  // タイトルとナビ
+  &__title-and-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2; // タイトルとナビが画像に隠れないようにする。
+    margin: 1.5rem;
   }
 
-  &-ddd {
-    background-color: $bbb;
+  // サイトのサブタイトル
+  &__sub-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $heroImageOverMdFontColor;
+
+    @include media(md) {
+      font-size: 1.8rem;
+    }
+
+    @include media(sm) {
+      font-size: 1.6rem;
+      color: $heroImageSmFontColor;
+    }
+  }
+
+  // サイトのメインタイトル
+  &__main-title {
+    font-size: 6rem;
+    font-weight: 800;
+    color: $heroImageOverMdFontColor;
+
+    @include media(md) {
+      font-size: 5.5rem;
+    }
+
+    @include media(sm) {
+      font-size: 4.5rem;
+      color: $heroImageSmFontColor;
+    }
+  }
+
+  // ナビメニュー
+  &__nav-menu {
+    margin-top: 3rem;
+
+    @include media(sm) {
+      display: none; // smの場合は左の白背景は表示しない。
+    }
+  }
+
+  // ナビメニューの要素
+  &__nav-element {
+    margin-top: 2.5rem;
+
+    // ナビメニューの要素のタイトル
+    &-main-text {
+      font-size: 2rem;
+      color: $heroImageOverMdFontColor;
+    }
+  }
+
+  // 右側の画像部分
+  &__right {
+    position: relative;
+    width: 100%;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100vh;
+      content: "";
+
+      // 画像と白背景の境目をグラデーションで白に移行するようにする。
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0) 80%,
+        #fff 100%
+      );
+
+      @include media(sm) {
+        background: none;
+      }
+    }
+  }
+
+  // キャッチフレーズ
+  &__catchphrase {
+    position: absolute;
+
+    // 右側領域のうち、どこに位置させるかを指定。
+    top: 7rem;
+    right: 5rem;
+    width: 42.5rem;
+    height: 9rem;
+    border: #707070 1px solid;
+
+    @include flexAndCenterAndCenter();
+
+    @include media(md) {
+      width: 30rem;
+      height: 7rem;
+      font-size: 1.8rem;
+    }
+
+    @include media(sm) {
+      width: 25rem;
+      height: 5rem;
+      font-size: 1.5rem;
+    }
+
+    &-back {
+      position: absolute;
+      top: 0.3rem;
+      left: 0.3rem;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(
+        137,
+        137,
+        137,
+        0.8
+      ); // 背景色だけ透明、文字色は不透明にするための設定
+
+      @include media(md) {
+        width: 30rem;
+        height: 7rem;
+      }
+
+      @include media(sm) {
+        top: 4rem;
+        right: 1rem;
+        width: 25rem;
+        height: 5rem;
+      }
+    }
+
+    &-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 2.6rem;
+      color: rgba(238, 236, 236, 0.9);
+    }
+  }
+
+  .top-hero-image__image > img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; // 縦横比を保ったまま、はみ出す部分はトリミングする。
+    object-position: 50% 20%; // 表示する画像の中央位置を指定。
+  }
+}
+
+/***************************************
+    コンセプト
+****************************************/
+.bl_concept {
+  &_container {
+    width: 90vw;
+    max-width: $mdLayoutMaxWidth;
+    padding: 7rem 0;
+    margin: 0 auto; // 中央揃え
+    @include flexColumnAndCenterAndCenter();
+
+    @include media(sm) {
+      padding: 4rem 0;
+    }
+  }
+
+  &_contents {
+    @include flexAndCenterAndSpaceAround();
+
+    padding-top: 7rem;
+
+    @include media(sm) {
+      @include flexColumnAndCenterAndCenter();
+
+      padding-top: 4rem;
+    }
+
+    .el_image {
+      flex: 1;
+
+      img {
+        @include media(md) {
+          width: 100%;
+        }
+        @include media(sm) {
+          width: 90vw;
+        }
+      }
+    }
+
+    &_description {
+      flex: 1;
+      @include flexColumnAndCenterAndCenter();
+
+      @include media(md) {
+        padding-left: 3rem;
+      }
+
+      @include media(sm) {
+        padding: 0 1rem;
+        margin-top: 2rem;
+      }
+
+      .el_btn {
+        width: 30rem;
+        height: 5rem;
+        margin-top: 3rem;
+
+        @include media(md) {
+          width: 100%;
+        }
+
+        &_container {
+          top: -4px;
+          left: -4px;
+          width: 30rem;
+          height: 5rem;
+          font-size: 2rem;
+
+          @include media(md) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    ご予約
+****************************************/
+.bl_reservation {
+  padding: 7rem 0;
+  margin: 0 auto;
+  background-image: url("../img/flower_and_book.jpg");
+  background-position: center;
+  background-size: cover;
+
+  @include media(sm) {
+    padding: 4rem 0;
+  }
+
+  &_container {
+    width: $mdLayoutMaxWidth;
+    padding: 50px 0 70px;
+    margin: 0 auto;
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.7
+    ); // 背景色だけ透明、文字色は不透明にするための設定
+    @include flexColumnAndCenterAndCenter();
+
+    @include media(md) {
+      width: 90vw;
+    }
+  }
+
+  &_contents {
+    @include flexColumnAndCenterAndSpaceBetween();
+
+    width: 80vw;
+
+    .el_text {
+      margin-top: 3rem;
+    }
+
+    &_btnList {
+      @include flexAndCenterAndSpaceAround();
+
+      @include media(sm) {
+        @include flexColumnAndCenterAndCenter();
+      }
+
+      .el_btn {
+        width: 30rem;
+        height: 5rem;
+        margin-top: 3rem;
+
+        @include media(md) {
+          width: 35vw;
+        }
+
+        @include media(sm) {
+          width: 80vw;
+        }
+
+        &_container {
+          top: -0.4rem;
+          left: -0.4rem;
+          width: 30rem;
+          height: 5rem;
+          font-size: 2rem;
+
+          @include media(md) {
+            width: 35vw;
+          }
+
+          @include media(sm) {
+            width: 80vw;
+          }
+        }
+      }
+
+      .el_btn:last-child {
+        margin-left: 5rem;
+
+        @include media(sm) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    スタイル紹介
+****************************************/
+.bl_style {
+  &_container {
+    width: 90vw;
+    max-width: $mdLayoutMaxWidth;
+    padding: 7rem 0;
+    margin: 0 auto;
+    @include flexColumnAndCenterAndCenter();
+
+    @include media(md) {
+      padding: 5rem 0;
+    }
+  }
+
+  &_contents {
+    @include flexColumnAndCenterAndCenter();
+
+    margin-top: 7rem;
+
+    @include media(md) {
+      margin-top: 4rem;
+    }
+
+    .bl_imageList {
+      width: 80vw;
+      max-width: 800px;
+
+      &_element {
+        @include media(sm) {
+          width: 48%;
+          margin-top: 0.5rem;
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    .el_btn {
+      width: 30rem;
+      height: 5rem;
+      margin-top: 3rem;
+
+      @include media(sm) {
+        width: 100%;
+      }
+
+      &_container {
+        top: -4px;
+        left: -4px;
+        width: 30rem;
+        height: 5rem;
+        font-size: 2rem;
+
+        @include media(sm) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    コンテンツ
+****************************************/
+.bl_contents {
+  &_container {
+    width: 90vw;
+    max-width: $mdLayoutMaxWidth;
+    padding: 7rem 0;
+    margin: 0 auto;
+    @include flexColumnAndCenterAndCenter();
+
+    @include media(md) {
+      padding: 5rem 0;
+    }
+  }
+
+  &_btnList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+
+    @include media(sm) {
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+
+    &_element {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      margin-left: 1.5rem;
+
+      @include media(sm) {
+        margin-top: 1rem;
+        margin-left: 0;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      .el_image {
+        img {
+          width: 30rem;
+          height: 18rem;
+          object-position: 50% 30%;
+
+          @include media(md) {
+            $menuWidth: 25vw;
+
+            width: $menuWidth;
+            height: $menuWidth * 0.7;
+          }
+
+          @include media(sm) {
+            $menuWidth: 80vw;
+
+            width: $menuWidth;
+            height: $menuWidth * 0.7;
+          }
+        }
+
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          display: block;
+          content: "";
+          background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+          ); // 背景色だけ透明、文字色は不透明にするための設定
+        }
+      }
+
+      .el_headline {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        &_main {
+          z-index: 1;
+        }
+
+        &_sub {
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    ブログ
+****************************************/
+.bl_blog {
+  &_container {
+    width: 90vw;
+    max-width: $mdLayoutMaxWidth;
+    padding: 7rem 0;
+    margin: 0 auto;
+    @include flexColumnAndCenterAndCenter();
+
+    @include media(md) {
+      padding: 5rem 0;
+    }
+  }
+
+  &_list {
+    @include flexAndCenterAndSpaceAround();
+
+    margin-top: 7rem;
+
+    @include media(md) {
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+
+    &_element {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      margin-left: 4rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      @include media(md) {
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: 1.5rem;
+        margin-left: 0;
+      }
+
+      .el_image {
+        img {
+          max-width: 100%;
+
+          @include media(md) {
+            max-width: 30vw;
+            margin-right: 1rem;
+          }
+
+          @include media(sm) {
+            max-width: 30vw;
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      &_description {
+        @include media(md) {
+          width: 50vw;
+        }
+
+        &_date {
+          margin-top: 5px;
+          font-size: 1.2rem;
+
+          @include media(sm) {
+            font-size: 1.1rem;
+          }
+        }
+
+        &_headline {
+          margin-top: 5px;
+          font-size: 1.6rem;
+          font-weight: 800;
+          line-height: 1.5;
+
+          @include media(sm) {
+            font-size: 1.3rem;
+          }
+        }
+
+        &_excerpt {
+          margin-top: 5px;
+          font-size: 1.4rem;
+          line-height: 1.5;
+
+          @include media(sm) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .el_btn {
+    width: 30rem;
+    height: 5rem;
+    margin-top: 3rem;
+
+    @include media(sm) {
+      width: 100%;
+    }
+
+    &_container {
+      top: -4px;
+      left: -4px;
+      width: 30rem;
+      height: 5rem;
+      font-size: 2rem;
+
+      @include media(sm) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/***************************************
+    コンセプトページ
+****************************************/
+.bl_allConcept {
+  @include flexColumnAndCenterAndCenter();
+
+  width: 90vw;
+  max-width: $mdLayoutMaxWidth;
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_mainImage {
+    .el_image {
+      position: relative;
+
+      img {
+        $ratio: 3.6;
+        $imageWidth: 90rem;
+
+        z-index: 1;
+        width: $imageWidth;
+        height: $imageWidth / $ratio;
+        object-position: 50% 45%;
+
+        @include media(md) {
+          $imageWidth: 88vw;
+
+          width: $imageWidth;
+          height: $imageWidth / $ratio;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.3
+        ); // 背景色だけ透明、文字色は不透明にするための設定
+
+        transform: translate(clamp(6px, 1vw, 15px), clamp(6px, 1vw, 15px));
+      }
+    }
+  }
+
+  &_mainMessage {
+    width: clamp(30rem, 70%, 65rem);
+    padding: 10rem 0 3rem;
+    margin: 0 auto;
+
+    @include media(sm) {
+      width: 90%;
+    }
+
+    &_headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #eba720;
+    }
+
+    &_text {
+      margin-top: 4.5rem;
+    }
+
+    .el_text {
+      font-size: 1.3rem;
+      line-height: 2.5;
+    }
+
+    &_author {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+  }
+
+  &_list {
+    @include flexColumnAndCenterAndCenter();
+
+    &_element {
+      $elementBlock: &;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      margin-top: 5rem;
+
+      &_image {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+
+        img {
+          @media screen and (max-width: 800px) {
+          }
+
+          width: 70%;
+        }
+      }
+
+      &_content {
+        flex: 1;
+
+        &_number {
+          font-size: 5rem;
+          color: rgba(169, 169, 169, 0.9);
+        }
+
+        &_block {
+          padding: 3rem;
+          border: 1px solid rgba(169, 169, 169, 0.7);
+
+          &_headline {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #eba720;
+          }
+
+          &_text {
+            margin-top: 3rem;
+            line-height: 2.5;
+          }
+        }
+      }
+
+      &:nth-of-type(odd) {
+        // #{$elementBlock}_image:nth-child(1) {
+        //   // 左の画像を下にずらす。
+        //   position: relative;
+        //   top: 10rem;
+        //   z-index: 2;
+        // }
+
+        #{$elementBlock}_content:nth-child(2) {
+          // // 右の説明文を左にずらす。
+          // position: relative;
+          // left: -2rem;
+          // z-index: -1;
+
+          #{$elementBlock}_content_number {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+
+      &:nth-of-type(even) {
+        // 各階層の偶数番目にあるdivを調べてくれてそれにclass="bl_allConcept_list_element"が付与されていれば適用されている。
+        flex-direction: row-reverse; // 偶数番目の要素は画像が右。
+
+        #{$elementBlock}_image:nth-child(1) {
+          // 右の画像を左と下にずらす。
+          // position: relative;
+          // top: 10rem;
+          // left: -2rem;
+          // z-index: 2;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    スタイル一覧ページ
+****************************************/
+.bl_styleList {
+  @include flexColumnAndCenterAndCenter();
+
+  width: 1200px;
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_mainImage {
+    .el_image {
+      position: relative;
+
+      img {
+        z-index: 1;
+        width: 900px;
+        height: 250px;
+        object-position: 50% 45%;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.3
+        ); // 背景色だけ透明、文字色は不透明にするための設定
+
+        transform: translate(15px, 15px);
+      }
+    }
+  }
+
+  &_styleMenu {
+    @include flexAndCenterAndSpaceBetween();
+
+    width: 900px;
+    margin: 3rem 0;
+    font-weight: 800;
+
+    .el_headline {
+      padding: 1rem 2rem;
+      color: #707070;
+
+      &_main {
+        font-size: 3rem;
+      }
+
+      &_sub {
+        font-size: 1.3rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(43, 90, 245, 0.2);
+        border-bottom: 3px solid rgb(43, 90, 245);
+      }
+    }
+  }
+
+  .bl_imageList {
+    width: 800px;
+    transform: translateX(-0.75rem);
+
+    &_element {
+      flex: 23%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-top: 1.5rem;
+      margin-left: 1.5rem;
+    }
+  }
+}
+
+/***************************************
+    スタイル詳細ページ
+****************************************/
+.bl_styleDetail {
+  @include flexColumnAndCenterAndCenter();
+
+  width: 1000px;
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_container {
+    width: 1000px;
+    @include flexAndCenterAndSpaceBetween();
+  }
+
+  &_targetImage {
+    .el_image {
+      img {
+        width: 500px;
+        height: 500px;
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+    }
+  }
+
+  &_description {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 500px;
+    margin-left: 2rem;
+
+    &_styleName {
+      padding: 1.3rem 1rem;
+      font-size: 2rem;
+      border-bottom: 1px solid #707070;
+    }
+
+    &_styleDetailDescription {
+      padding: 1.3rem 1rem;
+      border-bottom: 1px solid #707070;
+    }
+
+    .bl_imageList {
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      @include flexAndCenterAndFlexStart();
+
+      &_element {
+        flex: 20%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-top: 1rem;
+        margin-left: 1rem;
+
+        img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
+
+    &_btn {
+      display: flex;
+      justify-content: center;
+
+      .el_btn {
+        margin-top: 3rem;
+      }
+    }
+  }
+}
+
+/***************************************
+    メニューページ
+****************************************/
+.bl_menu {
+  width: 1200px;
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    @include flexColumnAndCenterAndCenter();
+
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_mainImage {
+    @include flexColumnAndCenterAndCenter();
+
+    .el_image {
+      position: relative;
+
+      img {
+        z-index: 1;
+        width: 900px;
+        height: 250px;
+        object-position: 50% 45%;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.3
+        ); // 背景色だけ透明、文字色は不透明にするための設定
+
+        transform: translate(15px, 15px);
+      }
+    }
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 900px;
+    height: 1000px;
+    margin: 1rem auto 0;
+    transform: translateX(-4rem);
+
+    &_element {
+      margin-left: 10rem;
+
+      .el_headline {
+        align-items: flex-start;
+        padding: 6rem 0 1rem;
+        font-weight: 800;
+        color: #eba720;
+
+        &_main {
+          font-size: 4rem;
+        }
+
+        &_sub {
+          margin-top: 0.3rem;
+          font-size: 1.4rem;
+        }
+      }
+
+      &_oneMenu {
+        @include flexAndCenterAndSpaceBetween();
+
+        height: 2rem;
+        margin-top: 2.5rem;
+        border-bottom: 1px solid rgba(169, 169, 169, 0.8);
+
+        &_text {
+          font-size: 1.7rem;
+        }
+
+        &_price {
+          margin-left: 4rem;
+          font-size: 1.7rem;
+        }
+      }
+
+      &_annotation {
+        width: 400px;
+        margin-top: 6rem;
+        background-color: rgba(247, 236, 187, 0.7);
+
+        &_one {
+          display: flex;
+          align-items: flex-start;
+
+          &:last-child {
+            .el_text {
+              padding-top: 0;
+            }
+          }
+        }
+
+        .el_text {
+          padding: 1.5rem;
+          font-weight: 1100;
+          color: #be8d29;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+  スタイリストページ
+****************************************/
+.bl_stylist {
+  @include flexColumnAndCenterAndCenter();
+
+  width: 1000px;
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_container {
+    width: 1000px;
+    @include flexAndCenterAndSpaceBetween();
+  }
+
+  &_imageContainer {
+    &_targetImage {
+      .el_image {
+        img {
+          width: 450px;
+          height: 600px;
+          object-fit: cover;
+          object-position: 50% 50%;
+        }
+      }
+    }
+
+    .bl_imageList {
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      @include flexAndCenterAndFlexStart();
+
+      &_element {
+        flex: 20%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-top: 1rem;
+        margin-left: 1rem;
+
+        img {
+          width: 145px;
+          height: 190px;
+        }
+      }
+    }
+  }
+
+  &_description {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 500px;
+    margin-left: 2rem;
+
+    &_position {
+      font-size: 1.3rem;
+      color: black;
+    }
+
+    &_japaneseName {
+      margin-top: 1rem;
+      font-size: 3rem;
+      color: black;
+    }
+
+    &_englishName {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      color: black;
+    }
+
+    &_introduction {
+      margin-top: 4rem;
+
+      &_headline {
+        font-size: 2rem;
+        line-height: 2;
+        color: rgb(66, 66, 66);
+      }
+
+      &_text {
+      }
+    }
+  }
+}
+
+/***************************************
+    ブログページ
+****************************************/
+.bl_blogPage {
+  @include flexColumnAndCenterAndCenter();
+
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_container {
+    align-items: flex-start;
+    width: 1200px;
+    @include flexAndCenterAndSpaceBetween();
+  }
+
+  &_main {
+    width: 900px;
+    color: #707070;
+
+    &_date {
+      font-size: 2rem;
+    }
+
+    &_title {
+      font-size: 3.5rem;
+      color: black;
+    }
+
+    &_image {
+      .el_image {
+        img {
+          height: 600px;
+          object-fit: cover;
+          object-position: 50% 50%;
+        }
+      }
+    }
+
+    &_text {
+      padding: 3rem 0;
+
+      &.el_text {
+        line-height: 2.4;
+      }
+    }
+
+    &_category {
+      padding: 2rem 1rem;
+      font-size: 1.6rem;
+      border-top: 1px solid #707070;
+      border-bottom: 1px solid #707070;
+    }
+
+    &_otherPageLink {
+      padding-top: 2rem;
+      @include flexAndCenterAndSpaceBetween();
+
+      font-size: 1.6rem;
+    }
+  }
+
+  &_sidebar {
+    width: 280px;
+    margin-left: 3.5rem;
+
+    &_articleList {
+      display: flex;
+      flex-direction: column;
+      margin-top: 8rem;
+
+      &_title {
+        padding-bottom: 1.5rem;
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: black;
+        text-align: center;
+        border-bottom: 1px solid #707070;
+      }
+
+      &_elementList {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: stretch;
+
+        &_element {
+          padding: 1.5rem 0;
+          font-size: 1.6rem;
+          border-bottom: 1px solid #707070;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    アクセスページ
+****************************************/
+.bl_access {
+  @include flexColumnAndCenterAndCenter();
+
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+  }
+
+  &_map {
+    .el_image {
+      img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+    }
+  }
+
+  &_description {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 2rem;
+
+    &_shopName {
+      margin-top: 1rem;
+      font-size: 3rem;
+      color: black;
+    }
+
+    &_address {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      color: black;
+
+      p:not(:first-child) {
+        margin-top: 1rem;
+      }
+    }
+
+    &_introduction {
+      margin-top: 4rem;
+
+      &_headline {
+        font-size: 2rem;
+        line-height: 2;
+        color: rgb(66, 66, 66);
+      }
+    }
+  }
+}
+
+/***************************************
+    採用ページ
+****************************************/
+.bl_recruitPage {
+  @include flexColumnAndCenterAndCenter();
+
+  width: 1200px;
+  padding: 7rem 0 1rem;
+  margin: 0 auto;
+
+  .el_headline {
+    padding: 7rem 0 10rem;
+
+    &_main {
+      font-size: 5rem;
+    }
+
+    &_sub {
+      margin-top: 1rem;
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+
+  &_mainImage {
+    .el_image {
+      position: relative;
+
+      img {
+        z-index: 1;
+        width: 900px;
+        height: 250px;
+        object-position: 50% 45%;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.3
+        ); // 背景色だけ透明、文字色は不透明にするための設定
+
+        transform: translate(15px, 15px);
+      }
+    }
+  }
+
+  &_mainMessage {
+    width: 750px;
+    padding: 10rem 0 3rem;
+    margin: 0 auto;
+    @include flexColumnAndCenterAndCenter();
+
+    &_headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #eba720;
+    }
+
+    &_text {
+      margin-top: 4.5rem;
+      text-align: center;
+    }
+
+    .el_text {
+      font-size: 1.3rem;
+      line-height: 2.5;
+    }
+  }
+
+  &_requirements {
+    width: 750px;
+    padding: 3rem 0;
+    margin: 0 auto;
+    @include flexColumnAndCenterAndCenter();
+
+    &_headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #eba720;
+    }
+
+    &_table {
+      margin-top: 4.5rem;
+      box-shadow: 1px 1px 8px rgba(169, 169, 169, 0.7);
+
+      &_itemName {
+        width: 150px;
+        height: 40px;
+        padding: 2rem;
+        font-size: 1.7rem;
+        text-align: center;
+        vertical-align: middle;
+        background-color: rgba(169, 169, 169, 0.3);
+        border: 1px solid rgba(169, 169, 169, 0.7);
+      }
+
+      &_itemValue {
+        padding: 2rem;
+        font-size: 1.7rem;
+        line-height: 1.6;
+        border: 1px solid rgba(169, 169, 169, 0.7);
+      }
+    }
+  }
+
+  &_btn {
+    padding: 3rem 8rem;
+    text-align: center;
+    border: 1px solid rgba(169, 169, 169, 0.3);
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgba(169, 169, 169, 0.7);
+
+    &:hover {
+      cursor: pointer;
+      background: rgba(204, 150, 42, 0.6);
+    }
+
+    &_subText {
+      margin-top: 1.1rem;
+      font-size: 1.5rem;
+      font-weight: 350;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &_mainText {
+      margin-top: 1.1rem;
+      font-size: 2.2rem;
+    }
   }
 }

@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+/***************************************
+  エレメントモジュール
+****************************************/
+
+// 見出しモジュール
+.el_headline {
+  display: flex;
+  align-items: baseline;
+
+  &_main {
+    font-size: 4.7rem;
+  }
+
+  &_sub {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+  }
+
+  @include media(md) {
+    &_main {
+      font-size: 4rem;
+    }
+
+    &_sub {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+  }
+
+  @include media(sm) {
+    &_main {
+      font-size: 3.5rem;
+    }
+
+    &_sub {
+      font-size: 1.4rem;
+      margin-left: 1rem;
+    }
+  }
+}
+.el_headline.el_headline__column {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.el_headline.el_headline__white {
+  color: white;
+}
+
+// 本文モジュール
+.el_text {
+  font-size: 1.5rem;
+  color: #000000;
+  line-height: 2;
+
+  @include media(md) {
+    font-size: 1.4rem;
+  }
+}
+
+// ボタンモジュール
+.el_btn {
+  position: relative;
+  width: 425px;
+  height: 90px;
+  border: #707070 1px solid;
+
+  &_container {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 425px;
+    height: 90px;
+    border: #707070 1px solid;
+    color: black;
+    @include flexAndCenterAndCenter;
+    font-size: 2.6rem;
+  }
+
+  &:hover {
+    background-color: #cca85f;
+    cursor: pointer;
+    .el_btn_container {
+      color: white;
+    }
+  }
+}
+
+// 画像モジュール（このクラスが付属された要素内にあるimgタグは、縦横比を保ったまま中央に表示される）
+.el_image {
+  @include flexColumnAndCenterAndCenter;
+
+  img {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+    @include media(md) {
+      width: 300px;
+    }
+  }
+}
+
+/***************************************
+  ブロックモジュール
+****************************************/
+
+// 画像リスト（用意された枠内に、画像を等間隔で配置する。）
+.bl_imageList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70vw;
+  max-width: 800px;
+
+  &_element {
+    position: relative;
+    width: 31%;
+    margin-left: 1rem;
+    margin-top: 1rem;
+
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+  }
+}
