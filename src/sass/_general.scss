@@ -278,6 +278,7 @@ $headerHeight: 6rem;
         width: 3rem;
         margin-bottom: 1rem;
         border-top: 2px solid #111;
+        transition: 0.3s all;
 
         &:last-child {
           margin-bottom: 0;
@@ -320,15 +321,18 @@ $headerHeight: 6rem;
 
         span:nth-child(1) {
           position: absolute;
+          transition: 0.3s all;
           transform: rotate(45deg);
         }
 
         span:nth-child(2) {
           opacity: 0;
+          transition: 0.3s all;
         }
 
         span:nth-child(3) {
           position: absolute;
+          transition: 0.3s all;
           transform: rotate(-45deg);
         }
       }
