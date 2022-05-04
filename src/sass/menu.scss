@@ -1,0 +1,150 @@
+@charset "UTF-8";
+@import "variable", "mixin", "module", "common", "general";
+
+/***************************************
+  ページタイトル
+****************************************/
+.general-page-title {
+  padding-top: 14rem;
+
+  @include media(sm) {
+    padding-top: 9rem;
+  }
+}
+
+/***************************************
+  メイン画像
+****************************************/
+.menu-main-image {
+  position: relative;
+  width: 85vw;
+  max-width: 90rem;
+  margin: 0 auto;
+  margin-top: 7rem;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    background-color: #727272a9;
+    transform: translate(1.5rem, 1.5rem);
+
+    @include media(md) {
+      transform: translate(0.8rem, 0.8rem);
+    }
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 1;
+    object-position: 50% 50%;
+  }
+}
+
+/***************************************
+  メニュー
+****************************************/
+.menu {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-gap: 5rem;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90vw;
+    max-width: 90rem;
+    height: 110rem;
+    margin: 1rem auto 0;
+
+    @include media(md) {
+      height: auto;
+    }
+  }
+
+  &__element {
+    width: 40%;
+    @include media(md) {
+      width: 90%;
+    }
+  }
+
+  &__headline {
+    &-group {
+      padding: 6rem 0 1rem;
+      font-weight: 800;
+      color: #eba720;
+    }
+
+    &-main {
+      font-size: 4rem;
+    }
+
+    &-sub {
+      margin-top: 0.3rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__element-one-menu {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    border-bottom: 1px solid rgba(169, 169, 169, 0.8);
+
+    &-name {
+      min-width: 0; // 文字数超過のときに親のフレックスコンテナからはみ出して表示されないようにする。
+      font-size: 1.7rem;
+      line-height: 1.6;
+      word-wrap: break-word; // 文字数超過のときに親のフレックスコンテナからはみ出して表示されないようにする。
+      overflow-wrap: break-word; // 文字数超過のときに親のフレックスコンテナからはみ出して表示されないようにする。
+    }
+
+    &-value {
+      width: 7rem;
+      min-width: 0; // 文字数超過のときに親のフレックスコンテナからはみ出して表示されないようにする。
+      font-size: 1.7rem;
+      line-height: 1.3;
+      text-align: end;
+    }
+  }
+
+  &__annotation {
+    &-box {
+      margin-top: 6rem;
+      background-color: rgba(247, 236, 187, 0.7);
+
+      @include media(md) {
+        margin-bottom: 5rem;
+      }
+    }
+
+    &-group {
+      display: flex;
+      align-items: flex-start;
+
+      &:last-child {
+        margin-top: -1.5rem;
+      }
+    }
+
+    &-name {
+      width: 4rem;
+    }
+
+    &-name,
+    &-value {
+      padding: 1.7rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #be8d29;
+    }
+  }
+}

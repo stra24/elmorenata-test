@@ -1,0 +1,211 @@
+@charset "UTF-8";
+@import "variable", "mixin", "module", "common", "general";
+
+/***************************************
+  ページタイトル
+****************************************/
+.general-page-title {
+  padding-top: 14rem;
+
+  @include media(sm) {
+    padding-top: 9rem;
+  }
+}
+
+/***************************************
+  メイン画像
+****************************************/
+.concept-main-image {
+  position: relative;
+  width: 85vw;
+  max-width: 90rem;
+  margin: 0 auto;
+  margin-top: 7rem;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    background-color: #727272a9;
+    transform: translate(1.5rem, 1.5rem);
+
+    @include media(md) {
+      transform: translate(0.8rem, 0.8rem);
+    }
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 1;
+    object-position: 50% 50%;
+  }
+}
+
+/***************************************
+  メインメッセージ
+****************************************/
+.concept-main-message {
+  width: clamp(30rem, 70%, 65rem);
+  padding: 10rem 0 3rem;
+  margin: 0 auto;
+
+  @include media(sm) {
+    width: 90%;
+  }
+
+  &__headline {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.5;
+    color: #eba720;
+  }
+
+  &__text {
+    margin-top: 4.5rem;
+    font-size: 1.5rem;
+    line-height: 2.5;
+  }
+
+  &__author {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+/***************************************
+  コンセプトリスト
+****************************************/
+.concept-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100rem;
+  margin: 0 auto 10rem;
+
+  @include media(l2) {
+    width: 90%;
+  }
+
+  &__element {
+    display: flex;
+    flex-grow: 0;
+    justify-content: center;
+    margin-top: 10rem;
+
+    &-image {
+      position: relative;
+      z-index: 99;
+      flex-shrink: 0; // 画像が縮まないようにする。
+      width: calc(30% - 3rem);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+
+      > img {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 1 / 1.5;
+      }
+    }
+
+    &-content {
+      flex-grow: 1;
+      width: 50%;
+    }
+
+    &-number {
+      height: 6rem;
+      font-size: 5rem;
+      color: rgba(169, 169, 169, 0.9);
+    }
+
+    &-text-group {
+      height: calc(100% - 6rem);
+      padding: 3rem;
+      border: 1px solid rgba(169, 169, 169, 0.7);
+
+      @include media(sm) {
+        padding: 2rem;
+      }
+    }
+
+    &-headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #eba720;
+    }
+
+    &-text {
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      line-height: 2.5;
+    }
+
+    &:nth-of-type(odd) {
+      .concept-list__element-content {
+        margin-left: 5rem;
+      }
+
+      @include media(l2) {
+        flex-direction: column;
+        align-items: flex-end;
+
+        .concept-list__element-content {
+          width: 100%;
+          margin-left: 0;
+        }
+
+        .concept-list__element-number {
+          width: 40%;
+        }
+
+        .concept-list__element-image {
+          width: calc(50% - 3rem);
+          margin-bottom: -7rem;
+        }
+      }
+    }
+
+    &:nth-of-type(even) {
+      // 各階層の偶数番目にあるdivを調べてくれてそれにclass="concept_list_element"が付与されていれば適用されている。
+      flex-direction: row-reverse; // 偶数番目の要素は画像が右。
+      .concept-list__element-content {
+        margin-right: 5rem;
+      }
+
+      .concept-list__element-number {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      @include media(l2) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .concept-list__element-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          width: 100%;
+          margin-right: 0;
+        }
+
+        .concept-list__element-number {
+          width: 40%;
+          text-align: end;
+        }
+
+        .concept-list__element-image {
+          width: calc(50% - 3rem);
+          margin-bottom: -7rem;
+        }
+      }
+    }
+  }
+}

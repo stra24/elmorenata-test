@@ -3,26 +3,19 @@
 /***************************************
   幅・高さの設定
 ****************************************/
-// ヘッダーの高さ
-$headerHeight: 6rem;
-
-// Mediumサイズのレイアウト最大幅
-$mdLayoutMaxWidth: 1023px;
-
-// Smallサイズのレイアウト最大幅
-$smLayoutMaxWidth: 599px;
+$smBreakPoint: 575px;
+$mdBreakPoint: 767px;
+$lBreakPoint: 960px;
+$l2BreakPoint: 1150px;
+$xlBreakPoint: 1200px;
 
 /***************************************
   ブレークポイント
 ****************************************/
 $breakpoints: (
-  "sm": "screen and (max-width: #{$smLayoutMaxWidth})",
-  "md": "screen and (max-width: #{$mdLayoutMaxWidth})",
+  "sm": "screen and (max-width: #{$smBreakPoint})",
+  "md": "screen and (max-width: #{$mdBreakPoint})",
+  "l": "screen and (max-width: #{$lBreakPoint})",
+  "l2": "screen and (max-width: #{$l2BreakPoint})",
+  "xl": "screen and (max-width: #{$xlBreakPoint})",
 );
-
-/***************************************
-  色の設定
-****************************************/
-// ヒーローイメージの文字色
-$heroImageOverMdFontColor: #727272;
-$heroImageSmFontColor: #e6e4e4;

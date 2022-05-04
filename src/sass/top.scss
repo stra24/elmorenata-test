@@ -1,0 +1,689 @@
+@charset "UTF-8";
+@import "variable", "mixin", "module", "common", "general";
+
+/***************************************
+  色の設定
+****************************************/
+// ヒーローイメージの文字色
+$heroImageOverMdFontColor: #727272;
+$heroImageMdFontColor: #e6e4e4;
+
+/***************************************
+    ヒーローイメージ
+****************************************/
+.top-hero-image {
+  display: flex; // 左にナビ、右に画像を配置するため。
+
+  // ヒーローイメージのナビ部分
+  &__nav {
+    position: relative; // 左下にナビを配置するため。
+    width: 35rem;
+    height: 100vh;
+    background-color: white;
+
+    @include media(md) {
+      width: 0; // mdの場合は左の白背景は表示しない。
+    }
+  }
+
+  // タイトルとナビ
+  &__title-and-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2; // タイトルとナビが画像に隠れないようにする。
+    margin: 3rem 1.5rem;
+  }
+
+  // サイトのサブタイトル
+  &__sub-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $heroImageOverMdFontColor;
+
+    @include media(md) {
+      font-size: 1.8rem;
+      color: $heroImageMdFontColor;
+    }
+  }
+
+  // サイトのメインタイトル
+  &__main-title {
+    font-size: 6rem;
+    font-weight: 800;
+    color: $heroImageOverMdFontColor;
+
+    @include media(md) {
+      font-size: 4.5rem;
+      color: $heroImageMdFontColor;
+    }
+  }
+
+  // ナビメニュー
+  &__nav-menu {
+    margin-top: 3rem;
+
+    @include media(md) {
+      display: none; // mdの場合は左の白背景は表示しない。
+    }
+  }
+
+  // ナビメニューの要素
+  &__nav-element {
+    display: flex;
+    margin-top: 2.5rem;
+
+    // ナビメニューの要素のタイトル
+    &-main-text {
+      font-size: 2rem;
+      color: $heroImageOverMdFontColor;
+      cursor: pointer;
+
+      &::after {
+        display: block;
+        width: 0;
+        margin-bottom: -2px;
+        content: "";
+        border-bottom: 2px solid #be8d29;
+        transition: 0.3s;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          font-weight: 800;
+
+          &::after {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+      @media (hover: none) {
+        &:active {
+          font-weight: 800;
+
+          &::after {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  // ヒーローイメージのメイン部分
+  &__main {
+    position: relative;
+    width: 100%;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100vh;
+      content: "";
+
+      // 画像と白背景の境目をグラデーションで白に移行するようにする。
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0) 80%,
+        #fff 100%
+      );
+
+      @include media(md) {
+        background: none;
+      }
+    }
+  }
+
+  // ヒーローイメージの画像
+  .top-hero-image__image > img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; // 縦横比を保ったまま、はみ出す部分はトリミングする。
+    object-position: 50% 20%; // 表示する画像の中央位置を指定。
+  }
+
+  // キャッチフレーズ
+  &__catchphrase {
+    position: absolute;
+
+    // 右側領域のうち、どこに位置させるかを指定。
+    top: 7rem;
+    right: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: #707070 1px solid;
+
+    @include media(md) {
+      top: 7rem;
+      right: 3rem;
+    }
+
+    @include media(sm) {
+      right: 2rem;
+    }
+
+    &-text {
+      position: relative;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 3rem;
+      font-size: 2.6rem;
+      color: rgba(238, 236, 236, 0.9);
+
+      @include media(md) {
+        font-size: 1.8rem;
+      }
+
+      @include media(sm) {
+        padding: 2rem 0 2rem 2rem;
+      }
+    }
+
+    &-back {
+      position: absolute;
+      top: 0.3rem;
+      left: 0.3rem;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(
+        137,
+        137,
+        137,
+        0.616
+      ); // 背景色だけ透明、文字色は不透明にするための設定
+    }
+  }
+}
+
+/***************************************
+    コンセプト
+****************************************/
+.top-concept {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: 96rem;
+    padding: 7rem 0;
+    margin: 0 auto; // 中央揃え
+    opacity: 0; // ふわっと浮き上がらせるための設定
+    transition: 1s; // ふわっと浮き上がらせるための設定
+    transform: translateY(10rem); // ふわっと浮き上がらせるための設定
+
+    &.--show-block {
+      opacity: 1; // ふわっと浮き上がらせるための設定
+      transform: translateY(0); // ふわっと浮き上がらせるための設定
+    }
+
+    @include media(md) {
+      padding: 4rem 0;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; // 均等配置
+    padding-top: 7rem;
+
+    @include media(md) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 4rem;
+    }
+  }
+
+  &__image {
+    flex: 1;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3rem;
+    font-size: 1.5rem;
+
+    @include media(md) {
+      padding: 0 1rem;
+      margin-top: 2rem;
+    }
+
+    .general-btn {
+      margin-top: 3rem;
+
+      &__text {
+        width: 30rem;
+        font-size: 2rem;
+
+        @include media(md) {
+          width: 80vw;
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+    ご予約
+****************************************/
+.top-reservation {
+  padding: 5rem 0; // 背景画像の上下分の余白
+  background-image: url(../img/flower_and_book.jpg);
+  background-position: 50% 50%;
+
+  @include media(sm) {
+    padding: 4rem 0;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: $lBreakPoint;
+    padding: 50px 0 70px; // 白背景の上下の余白
+    margin: 0 auto;
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.7
+    ); // 背景色だけ透明、文字色は不透明にするための設定
+
+    opacity: 0; // ふわっと浮き上がらせるための設定
+    transition: 1s; // ふわっと浮き上がらせるための設定
+    transform: translateY(10rem); // ふわっと浮き上がらせるための設定
+
+    &.--show-block {
+      opacity: 1; // ふわっと浮き上がらせるための設定
+      transform: translateY(0); // ふわっと浮き上がらせるための設定
+    }
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    font-size: 1.5rem;
+
+    .general-text {
+      margin-top: 3rem;
+    }
+  }
+
+  &__btnList {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    @include media(md) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .general-btn {
+      margin-top: 3rem;
+
+      &__text {
+        width: 30rem;
+        font-size: 2rem;
+
+        @include media(md) {
+          width: 80vw;
+        }
+      }
+    }
+
+    .general-btn:last-child {
+      margin-left: 5rem; // PC版ではボタンは横並びのため、左の余白あり。
+
+      @include media(md) {
+        margin-left: 0; // SP版ではボタンは縦並びのため、左の余白なし。
+      }
+    }
+  }
+}
+
+/***************************************
+    スタイル紹介
+****************************************/
+.top-style {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: $lBreakPoint;
+    padding: 7rem 0;
+    margin: 0 auto;
+    opacity: 0; // ふわっと浮き上がらせるための設定
+    transition: 1s; // ふわっと浮き上がらせるための設定
+    transform: translateY(10rem); // ふわっと浮き上がらせるための設定
+
+    &.--show-block {
+      opacity: 1; // ふわっと浮き上がらせるための設定
+      transform: translateY(0); // ふわっと浮き上がらせるための設定
+    }
+
+    @include media(md) {
+      padding: 5rem 0;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+
+    @include media(md) {
+      margin-top: 4rem;
+    }
+
+    .general-btn {
+      margin-top: 3rem;
+
+      &__text {
+        width: 30rem;
+        font-size: 2rem;
+
+        @include media(md) {
+          width: 80vw;
+        }
+      }
+    }
+  }
+
+  &__image-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 90vw;
+    max-width: 90rem;
+
+    @include media(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  &__image {
+    > img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+  }
+}
+
+/***************************************
+    コンテンツ
+****************************************/
+.top-contents {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: $lBreakPoint;
+    padding: 7rem 0;
+    margin: 0 auto;
+    opacity: 0; // ふわっと浮き上がらせるための設定
+    transition: 1s; // ふわっと浮き上がらせるための設定
+    transform: translateY(10rem); // ふわっと浮き上がらせるための設定
+
+    &.--show-block {
+      opacity: 1; // ふわっと浮き上がらせるための設定
+      transform: translateY(0); // ふわっと浮き上がらせるための設定
+    }
+
+    @include media(md) {
+      padding: 5rem 0;
+    }
+  }
+
+  &__btnList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+
+    @include media(md) {
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+  }
+
+  &__element {
+    position: relative;
+    flex: 1;
+    margin-left: 1.5rem;
+    cursor: pointer;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 99;
+      display: block;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: #1313137a;
+      transition: 0.3s;
+    }
+
+    @include media(md) {
+      margin-top: 1rem;
+      margin-left: 0;
+    }
+
+    &-image {
+      overflow: hidden;
+
+      > img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        transition: 0.3s;
+
+        @include media(md) {
+          aspect-ratio: 3 / 1.8;
+        }
+      }
+    }
+
+    &-title {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    &-main-title {
+      font-size: 4rem;
+    }
+
+    &-sub-title {
+      padding-top: 1rem;
+      font-size: 2rem;
+    }
+  }
+}
+
+// マウスオーバー時
+.top-contents__element.--zoom {
+  .top-contents__element-image {
+    img {
+      transform: scale(1.5);
+    }
+  }
+
+  &::before {
+    background-color: rgba(39, 39, 39, 0.342);
+  }
+}
+
+/***************************************
+    ブログ
+****************************************/
+.top-blog {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: $lBreakPoint;
+    padding: 7rem 0;
+    margin: 0 auto;
+    opacity: 0; // ふわっと浮き上がらせるための設定
+    transition: 1s; // ふわっと浮き上がらせるための設定
+    transform: translateY(10rem); // ふわっと浮き上がらせるための設定
+
+    &.--show-block {
+      opacity: 1; // ふわっと浮き上がらせるための設定
+      transform: translateY(0); // ふわっと浮き上がらせるための設定
+    }
+
+    @include media(md) {
+      padding: 5rem 0;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 7rem;
+
+    @include media(md) {
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+  }
+
+  &__element {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 4rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 9px 2px #7070706e;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    @include media(md) {
+      align-items: flex-start;
+      margin-top: 1.5rem;
+      margin-left: 0;
+    }
+  }
+
+  &__image {
+    overflow: hidden;
+
+    > img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      border-radius: 0.5rem 0.5rem 0 0;
+      object-fit: cover;
+      transition: 0.3s;
+
+      @include media(md) {
+        aspect-ratio: 3 / 1.4;
+      }
+    }
+  }
+
+  &__description {
+    padding: 1.5rem;
+  }
+
+  &__date {
+    font-size: 1.2rem;
+  }
+
+  &__headline {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .general-btn {
+    margin-top: 4rem;
+  }
+}
+
+// マウスオーバー時
+.top-blog__element.--zoom {
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: #3d3d3d34;
+    border-radius: 0.5rem;
+  }
+
+  .top-blog__image {
+    img {
+      transform: scale(1.5);
+    }
+  }
+}

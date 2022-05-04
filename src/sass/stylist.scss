@@ -1,0 +1,149 @@
+@charset "UTF-8";
+@import "variable", "mixin", "module", "common", "general";
+
+/***************************************
+  ページタイトル
+****************************************/
+.general-page-title {
+  padding-top: 14rem;
+
+  @include media(sm) {
+    padding-top: 9rem;
+  }
+}
+
+/***************************************
+  スタイリストコンテナ（左の画像と右のスタイリスト詳細をまとめたもの）
+****************************************/
+.stylist__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 90vw;
+  max-width: $xlBreakPoint;
+  margin: 7rem auto;
+
+  @include media(md) {
+    flex-direction: column;
+  }
+}
+
+/***************************************
+  左の画像部分
+****************************************/
+.stylist__all-image {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  margin-right: 3rem;
+  @include media(md) {
+    width: 100%;
+  }
+}
+
+.stylist__main-image {
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    object-position: 50% 50%;
+    object-fit: cover;
+  }
+}
+
+.stylist__sub-image {
+  &-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  &-element {
+    position: relative;
+    width: 30%;
+    transition: 0.3s; // 選択時に暗くするための前準備
+
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    @media (hover: none) {
+      &:active {
+        cursor: pointer;
+      }
+    }
+
+    // 選択時に暗くするための前準備
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 99;
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+
+    img {
+      width: 100%;
+      aspect-ratio: 1 / 1.5;
+      object-position: 50% 50%;
+      object-fit: cover;
+    }
+  }
+}
+
+// 選択時
+.stylist__sub-image-element.--selected {
+  &::before {
+    background-color: rgba(39, 39, 39, 0.562);
+  }
+}
+
+/***************************************
+  右の詳細説明部分
+****************************************/
+.stylist {
+  &__description {
+    @include media(md) {
+      margin-top: 3rem;
+    }
+  }
+
+  &__position {
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+
+  &__japanese-name {
+    font-size: 3rem;
+    line-height: 1.7;
+  }
+
+  &__english-name {
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+
+  &__introduction-group {
+    margin-top: 4rem;
+  }
+
+  &__stylist-item-name {
+    padding-left: 1rem;
+    font-size: 2.2rem;
+    border-left: 3px solid rgba(189, 144, 60, 0.705);
+  }
+
+  &__stylist-item-value {
+    margin-top: 0.8rem;
+    font-size: 1.6rem;
+    line-height: 2;
+  }
+}

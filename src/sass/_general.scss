@@ -1,0 +1,508 @@
+@charset "UTF-8";
+@import "mixin";
+
+/***************************************
+  見出し1
+****************************************/
+.general-headline {
+  display: flex;
+  align-items: baseline;
+
+  &__main {
+    font-size: 4.7rem;
+  }
+
+  &__sub {
+    margin-left: 1rem;
+    font-size: 1.8rem;
+  }
+
+  @include media(md) {
+    &__main {
+      font-size: 4rem;
+    }
+
+    &__sub {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  @include media(sm) {
+    &__main {
+      font-size: 3.5rem;
+    }
+
+    &__sub {
+      margin-left: 1rem;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+/***************************************
+  見出し2（個別ページのタイトル）
+****************************************/
+.general-page-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__main {
+    font-size: 5rem;
+
+    @include media(sm) {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__sub {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+}
+
+/***************************************
+  ボタン1
+****************************************/
+.general-btn__text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 1em 2em;
+  margin: 0 auto;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  background-color: rgba(222, 219, 219, 0.92);
+  transition: 0.3s;
+
+  // 下の線
+  &::before {
+    position: absolute;
+    right: -7px;
+    bottom: -7px;
+    width: 100%;
+    height: 2px;
+    content: "";
+    background-color: #bbb;
+    transition: 0.2s ease 0s;
+  }
+
+  // 右の線
+  &::after {
+    position: absolute;
+    top: 7px;
+    right: -7px;
+    width: 2px;
+    height: 100%;
+    content: "";
+    background-color: #bbb;
+    transition: 0.2s ease 0.2s;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: #d3bb84;
+
+      // 下の線（ホバー時）
+      &::before {
+        width: 0%;
+      }
+
+      // 右の線（ホバー時）
+      &::after {
+        height: 0%;
+      }
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: #d3bb84;
+
+      // 下の線（ホバー時）
+      &::before {
+        width: 0%;
+      }
+
+      // 右の線（ホバー時）
+      &::after {
+        height: 0%;
+      }
+    }
+  }
+}
+
+/***************************************
+  本文
+****************************************/
+.general-text {
+  font-size: 1.5rem;
+  line-height: 2;
+  color: #000;
+
+  @include media(md) {
+    font-size: 1.4rem;
+  }
+}
+
+/***************************************
+  ヘッダー
+****************************************/
+$headerHeight: 6rem;
+
+.general-header {
+  position: fixed;
+  z-index: 100;
+  display: none; // PCでは非表示（jsでコンテンツ以下の場合に表示する）
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all 0.5s;
+
+  &.--show {
+    display: block;
+  }
+
+  @include media(l2) {
+    display: block; // SPでは常に表示
+  }
+
+  &__container {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  &__title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5rem 1rem 0;
+    cursor: pointer;
+  }
+
+  &__sub-title {
+    font-size: 1.4rem;
+  }
+
+  &__main-title {
+    font-size: 3.5rem;
+  }
+
+  &__nav {
+    @include flexAndCenterAndSpaceBetween();
+
+    @include media(l2) {
+      display: none;
+    }
+
+    &-element {
+      @include flexColumnAndCenterAndCenter();
+
+      height: 100%;
+      padding: 0 clamp(1rem, 1vw, 2rem);
+
+      &-main-text {
+        font-size: 3rem;
+      }
+
+      &-sub-text {
+        font-size: 1.4rem;
+      }
+
+      @media (hover: hover) {
+        &:not(:last-child):hover {
+          color: white;
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+      }
+      @media (hover: none) {
+        &:not(:last-child):active {
+          color: white;
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.7);
+        }
+      }
+
+      &-reservation {
+        height: 35px;
+        padding: 20px;
+        margin: 0 2rem;
+        font-size: clamp(1.4rem, 1.95vw, 2.2rem);
+        color: white;
+        background-color: #cc962a;
+        border-radius: 10px;
+        box-shadow: 1px 1px 8px rgba(169, 169, 169, 0.7);
+        @include flexColumnAndCenterAndCenter();
+
+        @media (hover: hover) {
+          &:hover {
+            color: black;
+            cursor: pointer;
+            background-color: white;
+            border-color: black;
+          }
+        }
+
+        @media (hover: none) {
+          &:active {
+            color: black;
+            cursor: pointer;
+            background-color: white;
+            border-color: black;
+          }
+        }
+      }
+    }
+  }
+
+  &__mobile-btn {
+    @include media(l2) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 1rem;
+      cursor: pointer;
+
+      span {
+        display: block;
+        width: 3rem;
+        margin-bottom: 1rem;
+        border-top: 2px solid #111;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// ヘッダーボタン押下してオープン時
+@include media(l2) {
+  .general-header.--opened {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+
+    .general-header {
+      &__container {
+        flex-direction: column;
+      }
+
+      &__title-group {
+        display: none;
+      }
+
+      &__mobile-btn {
+        position: absolute;
+        top: 1.2rem;
+        right: 1rem;
+        height: 3rem;
+        margin-right: 0;
+
+        span {
+          margin-bottom: 0;
+          border-color: white;
+        }
+
+        span:nth-child(1) {
+          position: absolute;
+          transform: rotate(45deg);
+        }
+
+        span:nth-child(2) {
+          opacity: 0;
+        }
+
+        span:nth-child(3) {
+          position: absolute;
+          transform: rotate(-45deg);
+        }
+      }
+
+      &__nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &-element {
+          flex-direction: row;
+          align-items: center;
+          width: 100vw;
+          padding: 1rem 0;
+          margin-bottom: 1rem;
+          color: white;
+
+          @media (hover: hover) {
+            &:hover {
+              color: black;
+              background-color: white;
+            }
+          }
+          @media (hover: none) {
+            &:active {
+              color: black;
+              background-color: white;
+            }
+          }
+
+          &:last-child {
+            @media (hover: hover) {
+              &:hover {
+                background-color: transparent;
+              }
+            }
+            @media (hover: none) {
+              &:active {
+                background-color: transparent;
+              }
+            }
+          }
+
+          &-sub-text {
+            margin-top: 1rem;
+
+            &::before {
+              display: inline-block;
+              padding: 0 1.5rem;
+              content: "/";
+            }
+          }
+
+          &-reservation {
+            width: 50%;
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/***************************************
+  フッター
+****************************************/
+.general-footer {
+  background-color: #e0d8b3d0;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: $xlBreakPoint;
+    padding: 5rem 0;
+    margin: 0 auto;
+  }
+
+  &__title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title-sub {
+    font-size: 2rem;
+  }
+
+  &__title-main {
+    font-size: 5rem;
+
+    @include media(l) {
+      font-size: 4rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    margin-top: 4rem;
+
+    @include media(l) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &-element {
+      padding: 0.7rem 4rem;
+      font-size: 2rem;
+      cursor: pointer;
+      border-right: 1px solid rgb(72, 71, 71);
+
+      @media (hover: hover) {
+        &:hover {
+          color: white;
+          background-color: #333;
+
+          &::after {
+            border-color: white;
+          }
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          color: white;
+          background-color: #333;
+
+          &::after {
+            border-color: white;
+          }
+        }
+      }
+
+      @include media(l) {
+        display: flex;
+        justify-content: space-between;
+        width: 90vw;
+        padding: 1rem;
+        border-right: 0;
+        border-bottom: 1px solid #707070;
+
+        &::after {
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+          content: "";
+          border-top: 1px solid rgba(0, 0, 0, 0.491);
+          border-right: 1px solid rgba(0, 0, 0, 0.491);
+          transform: rotate(45deg) translateY(1rem);
+        }
+      }
+
+      @include media(sm) {
+        padding: 1.3rem;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+
+  &__description {
+    padding: 0 1rem;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    text-align: center;
+  }
+
+  &__copyright {
+    margin-top: 4rem;
+    font-size: 1.3rem;
+  }
+}

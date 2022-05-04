@@ -1,0 +1,170 @@
+@charset "UTF-8";
+@import "variable", "mixin", "module", "common", "general";
+
+/***************************************
+  ページタイトル
+****************************************/
+.general-page-title {
+  padding-top: 14rem;
+
+  @include media(sm) {
+    padding-top: 9rem;
+  }
+}
+
+/***************************************
+  メイン画像
+****************************************/
+.recruit-main-image {
+  position: relative;
+  width: 85vw;
+  max-width: 90rem;
+  margin: 0 auto;
+  margin-top: 7rem;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    background-color: #727272a9;
+    transform: translate(1.5rem, 1.5rem);
+
+    @include media(md) {
+      transform: translate(0.8rem, 0.8rem);
+    }
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 1;
+    object-position: 50% 50%;
+  }
+}
+
+/***************************************
+  メインメッセージ
+****************************************/
+.recruit {
+  &__main-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75rem;
+    padding: 10rem 0 3rem;
+    margin: 0 auto;
+
+    @include media(md) {
+      width: 90%;
+    }
+
+    &-headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #eba720;
+    }
+
+    &-text {
+      margin-top: 3.5rem;
+      font-size: 1.5rem;
+      line-height: 2.5;
+      text-align: center;
+    }
+  }
+}
+
+/***************************************
+  募集要項の表
+****************************************/
+.recruit {
+  &__requirements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75rem;
+    padding: 3rem 0;
+    margin: 0 auto;
+
+    @include media(md) {
+      width: 90%;
+    }
+
+    &-headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #eba720;
+    }
+
+    &-table {
+      margin-top: 4.5rem;
+      box-shadow: 1px 1px 8px rgba(169, 169, 169, 0.7);
+    }
+
+    &-name {
+      width: 15rem;
+      padding: 2rem;
+      font-size: 1.7rem;
+      text-align: center;
+      vertical-align: middle;
+      background-color: rgba(169, 169, 169, 0.3);
+      border: 1px solid rgba(169, 169, 169, 0.7);
+    }
+
+    &-value {
+      padding: 2rem;
+      font-size: 1.7rem;
+      line-height: 1.6;
+      vertical-align: middle;
+      border: 1px solid rgba(169, 169, 169, 0.7);
+    }
+  }
+}
+
+/***************************************
+  応募するボタン
+****************************************/
+.recruit {
+  &__btn {
+    width: 30rem;
+    padding: 3rem;
+    margin: 0 auto 5rem;
+    text-align: center;
+    border: 1px solid rgba(169, 169, 169, 0.3);
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgba(169, 169, 169, 0.7);
+
+    @include media(md) {
+      width: 60%;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background: rgba(204, 150, 42, 0.367);
+      }
+    }
+    @media (hover: none) {
+      &:active {
+        cursor: pointer;
+        background: rgba(204, 150, 42, 0.367);
+      }
+    }
+
+    &-sub-text {
+      font-size: 1.5rem;
+      font-weight: 350;
+      line-height: 2;
+    }
+
+    &-main-text {
+      font-size: 2.2rem;
+      line-height: 1.8;
+    }
+  }
+}
