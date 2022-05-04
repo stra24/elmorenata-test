@@ -7,8 +7,10 @@ const styleListMenuElement = document.querySelectorAll(
 styleListMenuElement.forEach((element) => {
   element.addEventListener('click', () => {
     styleListMenuElement.forEach((ele) => {
-      // 全部の背景を外す。
-      ele.classList.remove('--selected');
+      if (ele.classList.contains('--selected') && ele != element) {
+        // 全部の背景を外す。
+        ele.classList.remove('--selected');
+      }
     });
     // 押下した画像にだけ背景を適用する。
     element.classList.add('--selected');

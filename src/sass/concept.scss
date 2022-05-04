@@ -139,12 +139,19 @@
       font-weight: 800;
       line-height: 1.4;
       color: #eba720;
+
+      @include media(sm) {
+        padding-top: 1rem;
+      }
     }
 
     &-text {
       margin-top: 3rem;
       font-size: 1.5rem;
       line-height: 2.5;
+      @include media(sm) {
+        margin-top: 2rem;
+      }
     }
 
     &:nth-of-type(odd) {

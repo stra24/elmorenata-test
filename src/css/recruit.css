@@ -516,8 +516,7 @@ table {
 
 .general-header__nav-element-reservation {
   height: 35px;
-  padding: 20px;
-  margin: 0 2rem;
+  padding: 2rem;
   font-size: clamp(1.4rem, 1.95vw, 2.2rem);
   color: white;
   background-color: #cc962a;
@@ -708,7 +707,7 @@ table {
   フッター
 ****************************************/
 .general-footer {
-  background-color: #e0d8b3d0;
+  background-color: #f9f1cce2;
 }
 
 .general-footer__container {
@@ -777,7 +776,7 @@ table {
   padding: 0.7rem 4rem;
   font-size: 2rem;
   cursor: pointer;
-  border-right: 1px solid #484747;
+  border-right: 1px solid rgba(124, 122, 122, 0.567);
 }
 
 @media (hover: hover) {
@@ -1008,7 +1007,7 @@ table {
 ****************************************/
 .recruit__btn {
   width: 30rem;
-  padding: 3rem;
+  padding: 1.5rem;
   margin: 0 auto 5rem;
   text-align: center;
   border: 1px solid rgba(169, 169, 169, 0.3);
@@ -1019,7 +1018,7 @@ table {
 
 @media screen and (max-width: 767px) {
   .recruit__btn {
-    width: 60%;
+    width: 80%;
   }
 }
 

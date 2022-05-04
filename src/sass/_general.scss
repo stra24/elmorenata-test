@@ -236,8 +236,7 @@ $headerHeight: 6rem;
 
       &-reservation {
         height: 35px;
-        padding: 20px;
-        margin: 0 2rem;
+        padding: 2rem;
         font-size: clamp(1.4rem, 1.95vw, 2.2rem);
         color: white;
         background-color: #cc962a;
@@ -398,7 +397,7 @@ $headerHeight: 6rem;
   フッター
 ****************************************/
 .general-footer {
-  background-color: #e0d8b3d0;
+  background-color: #f9f1cce2;
 
   &__container {
     display: flex;
@@ -440,7 +439,7 @@ $headerHeight: 6rem;
       padding: 0.7rem 4rem;
       font-size: 2rem;
       cursor: pointer;
-      border-right: 1px solid rgb(72, 71, 71);
+      border-right: 1px solid rgba(124, 122, 122, 0.567);
 
       @media (hover: hover) {
         &:hover {
