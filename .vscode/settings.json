@@ -29,9 +29,14 @@
     {
       "format": "expanded", // 出力されるCSSファイルのフォーマット
       "extensionName": ".css", // 出力されるCSSファイルの拡張子
-      "savePath": "/src/css" // cssフォルダ直下にCSSファイルを出力するようにする。
+      "savePath": "/css" // cssフォルダ直下にCSSファイルを出力するようにする。
     }
   ],
   "liveSassCompile.settings.generateMap": false, // MAPファイルは生成しないようにする。
-  "liveSassCompile.settings.autoprefix": ["> 1% in JP", "last 5 versions"] // ベンダープレフィックスを付与する。「日本国内のシェアが1%以上」または「最新バージョンから数えて5つまで」
+
+  // ベンダープレフィックスを付与する。「日本国内のシェアが1%以上」または「最新バージョンから数えて5つまで」
+  "liveSassCompile.settings.autoprefix": ["> 1% in JP", "last 5 versions"],
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  }
 }

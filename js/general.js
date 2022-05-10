@@ -1,6 +1,11 @@
 export const header = document.querySelector('.general-header');
 const mobileBtn = document.querySelector('.general-header__mobile-btn');
+const heroImage = document.querySelector('.top-hero-image');
 
+// TOPページ以外のページでは、ヘッダーを常に表示するようにする。
+if (heroImage == null) {
+  header.classList.add('--show');
+}
 // スクロール禁止関数
 function notscroll(e) {
   e.preventDefault();
