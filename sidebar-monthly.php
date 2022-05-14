@@ -15,7 +15,7 @@
             $archiveArray = [];
             while ($the_query->have_posts()) {
                 $the_query->the_post();
-                $yearMonth = (string) $year . '年' . (string) $monthnum . '月';
+                $yearMonth = mysql2date('Y年n月', $post->post_date);
 
                 if (array_key_exists($yearMonth, $archiveArray)) {
                     $archiveArray[$yearMonth] = $archiveArray[$yearMonth] + 1;
@@ -28,8 +28,13 @@
         ?>
 
         <?php foreach ($archiveArray as $key => $value) { ?>
-            <a href="<?php echo get_permalink(); ?>" class="blog__section-content-element">
-                <span><?php echo $key; ?>(<?php echo $value; ?>)</span>
+            <?php
+            sscanf($key, "%d年%d月", $yearStr, $monthStr);
+            $monthStr = sprintf('%02d', $monthStr);
+            ?>
+
+            <a href="<?php echo home_url(); ?>/<?php echo $yearStr; ?>/<?php echo $monthStr; ?>" class="blog__section-content-element">
+                <span><?php echo $yearStr; ?>年<?php echo $monthStr; ?>月(<?php echo $value; ?>)</span>
             </a>
         <?php } ?>
     </div>

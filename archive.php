@@ -12,19 +12,19 @@
   <!-- メインコンテンツ -->
   <main>
     <div class="general-page-title">
-      <div class="general-page-title__main">Blog</div>
-      <div class="general-page-title__sub">ブログ</div>
+      <div class="general-page-title__main"><?php echo get_the_archive_title(); ?></div>
+      <div class="general-page-title__sub">記事一覧</div>
     </div>
     <div class="blog__container">
       <div class="blog__main">
         <?php if (have_posts()) : ?>
-          <div class="top-blog__list" ontouchstart="">
+          <div class="archive__list" ontouchstart="">
             <?php
             // 記事をループする。 the_post();は投稿を次に進める。
             while (have_posts()) : the_post();
             ?>
-              <a href="<?php the_permalink(); ?>" class="top-blog__element">
-                <div class="top-blog__image">
+              <a href="<?php the_permalink(); ?>" class="archive__element">
+                <div class="archive__image">
                   <?php
                   $id = get_post_thumbnail_id();
                   $img = getEyecatchUrl($id);
@@ -32,9 +32,9 @@
                   ?>
                   <img src="<?php echo $img; ?>" alt="<?php echo $thumbnailAlt; ?>" />
                 </div>
-                <div class="top-blog__description">
-                  <div class="top-blog__date"><?php the_time('Y年m月d日'); ?></div>
-                  <div class="top-blog__headline">
+                <div class="archive__description">
+                  <div class="archive__date"><?php the_time('Y年m月d日'); ?></div>
+                  <div class="archive__headline">
                     <?php the_title(); ?>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
   </main>
 
   <?php get_footer(); ?>
-  <script type="module" src="<?php echo get_template_directory_uri(); ?>/js/general.js"></script>
+  <script type="module" src="<?php echo get_template_directory_uri(); ?>/js/archive.js"></script>
 </body>
 
 </html>

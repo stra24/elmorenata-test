@@ -50,7 +50,7 @@
             </div>
             <div class="blog__main-link-list" ontouchstart="">
               <?php
-              $oldLink = get_previous_post_link('%link');
+              $oldLink = get_previous_post_link('%link', '« 前の記事へ', false, '');
               if ($oldLink) {
                 $oldLink = str_replace('<a', '<a class="blog__main-link-old"', $oldLink);
               } else {
@@ -58,13 +58,13 @@
               }
               echo $oldLink;
 
-              $newLink = get_next_post_link('%link');
-              if ($newLink) {
-                $newLink = str_replace('<a', '<a class="blog__main-link-new"', $newLink);
+              $nextLink = get_next_post_link('%link', '次の記事へ »', false, '');
+              if ($nextLink) {
+                $nextLink = str_replace('<a', '<a class="blog__main-link-new"', $nextLink);
               } else {
-                $newLink = '<a></a>';
+                $nextLink = '<a></a>';
               }
-              echo $newLink;
+              echo $nextLink;
               ?>
             </div>
           </div>

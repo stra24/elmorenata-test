@@ -21,39 +21,44 @@
           </div>
 
           <div class="top-hero-image__nav-menu" ontouchstart="">
-            <div class="top-hero-image__nav-element">
-              <a href="./concept.html" class="top-hero-image__nav-element-main-text">Concept</a>
-            </div>
 
-            <div class="top-hero-image__nav-element">
-              <a href="./style-list.html" class="top-hero-image__nav-element-main-text">Style</a>
-            </div>
+            <?php
+            // functions.phpのregister_nav_menusで指定した要素を指定。				
+            $menu_name = 'global_nav';
+            // 登録されているすべてのナビゲーションメニューの場所と、それらに割り当てられているメニューを取得します。
+            $locations = get_nav_menu_locations();
+            // 'global_nav'のメニューオブジェクトを取得				
+            $menu = wp_get_nav_menu_object($locations[$menu_name]);
+            $menu_items = wp_get_nav_menu_items($menu->term_id);
+            ?>
 
-            <div class="top-hero-image__nav-element">
-              <a href="./menu.html" class="top-hero-image__nav-element-main-text">Menu</a>
-            </div>
+            <?php
+            // 最大最新の1件までの記事を表示する。
+            query_posts('showposts=1');
+            // 記事をループする。 the_post();は投稿を次に進める。
+            while (have_posts()) {
+              the_post();
+              $firstPostHref = get_permalink();
+            }
+            ?>
 
-            <div class="top-hero-image__nav-element">
-              <a href="./stylist.html" class="top-hero-image__nav-element-main-text">Stylist</a>
-            </div>
-
-            <div class="top-hero-image__nav-element">
-              <a href="./access.html" class="top-hero-image__nav-element-main-text">Access</a>
-            </div>
-
-            <div class="top-hero-image__nav-element">
-              <a href="./blog.html" class="top-hero-image__nav-element-main-text">Blog</a>
-            </div>
-
-            <div class="top-hero-image__nav-element">
-              <a href="./recruit.html" class="top-hero-image__nav-element-main-text">Recruit</a>
-            </div>
-
-            <div class="top-hero-image__nav-element">
-              <div class="top-hero-image__nav-element-main-text">
-                Reservation
-              </div>
-            </div>
+            <?php foreach ($menu_items as $item) : ?>
+              <?php if ($item->title == 'Reservation') { ?>
+                <div class="top-hero-image__nav-element">
+                  <div class="top-hero-image__nav-element-main-text">
+                    <?php echo $item->title; ?>
+                  </div>
+                </div>
+              <?php } elseif ($item->title == 'Blog') { ?>
+                <div class="top-hero-image__nav-element">
+                  <a href="<?php echo $firstPostHref; ?>" class="top-hero-image__nav-element-main-text"><?php echo $item->title; ?></a>
+                </div>
+              <?php } else { ?>
+                <div class="top-hero-image__nav-element">
+                  <a href="<?php echo $item->url; ?>" class="top-hero-image__nav-element-main-text"><?php echo $item->title; ?></a>
+                </div>
+              <?php } ?>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -89,7 +94,7 @@
               店名の「Elmorenata（エルモレナータ）」はイタリア語の造語で「愛すべき生まれ変わり」を意味します。
               癒しに特化したこだわり抜いたサービスやおもてなしをご提供し、お客様に「明日からまた頑張ろう」と思って頂けるような美容室にしたい。そんな想いを込めています。
             </div>
-            <a href="./concept.html" class="general-btn">
+            <a href="<?php echo home_url(); ?>/concept/" class="general-btn">
               <div class="general-btn__text">More</div>
             </a>
           </div>
@@ -150,7 +155,7 @@
               <img src="<?php echo get_template_directory_uri(); ?>/img/92EE6FAE-13C6-4C06-9C46-4938E491E97B.jpg" alt="スタイル" />
             </div>
           </div>
-          <a href="./style-list.html" class="general-btn">
+          <a href="<?php echo home_url(); ?>/style/" class="general-btn">
             <div class="general-btn__text">More</div>
           </a>
         </div>
@@ -170,7 +175,7 @@
             <div class="top-contents__element-image">
               <img src="<?php echo get_template_directory_uri(); ?>/img/items.jpg" />
             </div>
-            <a href="./menu.html" class="top-contents__element-title">
+            <a href="<?php echo home_url(); ?>/menu/" class="top-contents__element-title">
               <div class="top-contents__element-main-title">Menu</div>
               <div class="top-contents__element-sub-title">メニュー</div>
             </a>
@@ -180,7 +185,7 @@
             <div class="top-contents__element-image">
               <img src="<?php echo get_template_directory_uri(); ?>/img/stylist_1.jpg" />
             </div>
-            <a href="./stylist.html" class="top-contents__element-title">
+            <a href="<?php echo home_url(); ?>/stylist/" class="top-contents__element-title">
               <div class="top-contents__element-main-title">Stylist</div>
               <div class="top-contents__element-sub-title">スタイリスト</div>
             </a>
@@ -190,7 +195,7 @@
             <div class="top-contents__element-image">
               <img src="<?php echo get_template_directory_uri(); ?>/img/access.jpg" />
             </div>
-            <a href="./access.html" class="top-contents__element-title">
+            <a href="<?php echo home_url(); ?>/access" class="top-contents__element-title">
               <div class="top-contents__element-main-title">Access</div>
               <div class="top-contents__element-sub-title">アクセス</div>
             </a>
@@ -214,8 +219,7 @@
             query_posts('showposts=3');
 
             // 記事をループする。 the_post();は投稿を次に進める。
-            while (have_posts()) : the_post();
-            ?>
+            while (have_posts()) : the_post(); ?>
               <a href="<?php the_permalink(); ?>" class="top-blog__element">
                 <div class="top-blog__image">
                   <?php
@@ -238,7 +242,7 @@
           <p>記事がありませんでした。</p>
         <?php endif; ?>
 
-        <a href="./blog.html" class="general-btn">
+        <a href="<?php echo $firstPostHref ?>" class="general-btn">
           <div class="general-btn__text">More</div>
         </a>
       </div>
