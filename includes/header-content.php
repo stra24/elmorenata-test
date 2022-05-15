@@ -37,9 +37,9 @@
         <div class="general-header__nav">
             <?php foreach ($menu_items as $item) : ?>
                 <?php if ($item->title == 'Reservation') { ?>
-                    <div class="general-header__nav-element">
+                    <a href="<?php echo $item->url; ?>" class="general-header__nav-element">
                         <div class="general-header__nav-element-reservation"><?php echo $item->description; ?></div>
-                    </div>
+                    </a>
                 <?php } elseif ($item->title == 'Blog') { ?>
                     <a href="<?php echo $firstPostHref; ?>" class="general-header__nav-element">
                         <div class="general-header__nav-element-main-text"><?php echo $item->title; ?></div>

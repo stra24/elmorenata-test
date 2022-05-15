@@ -43,13 +43,7 @@
             ?>
 
             <?php foreach ($menu_items as $item) : ?>
-              <?php if ($item->title == 'Reservation') { ?>
-                <div class="top-hero-image__nav-element">
-                  <div class="top-hero-image__nav-element-main-text">
-                    <?php echo $item->title; ?>
-                  </div>
-                </div>
-              <?php } elseif ($item->title == 'Blog') { ?>
+              <?php if ($item->title == 'Blog') { ?>
                 <div class="top-hero-image__nav-element">
                   <a href="<?php echo $firstPostHref; ?>" class="top-hero-image__nav-element-main-text"><?php echo $item->title; ?></a>
                 </div>
